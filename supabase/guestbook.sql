@@ -44,24 +44,3 @@ begin
     alter publication supabase_realtime add table public.guestbook_entries;
   end if;
 end $$;
-
--- 페이지 방문 기록은 공개 목록에 노출하지 않고 관리자만 Dashboard에서 봅니다.
-create table if not exists public.guestbook_page_views (
-  id uuid primary key default gen_random_uuid(),
-  visitor_id uuid not null,
-  path text not null check (char_length(path) between 1 and 200),
-  visited_at timestamptz not null default now()
-);
-
-create index if not exists guestbook_page_views_visited_at_idx
-  on public.guestbook_page_views (visited_at desc);
-
-alter table public.guestbook_page_views enable row level security;
-revoke all on public.guestbook_page_views from anon, authenticated;
-grant insert (visitor_id, path) on public.guestbook_page_views to anon, authenticated;
-
-drop policy if exists "Visitors can log page views" on public.guestbook_page_views;
-create policy "Visitors can log page views"
-  on public.guestbook_page_views for insert
-  to anon, authenticated
-  with check (char_length(path) between 1 and 200);

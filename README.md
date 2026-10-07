@@ -4,14 +4,14 @@
 
 ## 1. Supabase 데이터베이스 준비
 
-현재 연결된 Supabase 프로젝트에는 두 테이블이 만들어져 있습니다. 다른 Supabase 프로젝트에서 다시 사용할 때는 아래 순서로 설정합니다.
+방명록 글은 `public.guestbook_entries` 테이블의 `name`, `message`, `created_at`에 저장됩니다. 사이트 방문만으로는 별도 기록을 남기지 않습니다. 다른 Supabase 프로젝트에서 다시 사용할 때는 아래 순서로 설정합니다.
 
 1. [Supabase Dashboard](https://supabase.com/dashboard)에서 사용할 프로젝트를 엽니다.
 2. 왼쪽 메뉴 **SQL Editor**에서 새 쿼리를 만듭니다.
 3. [`supabase/guestbook.sql`](supabase/guestbook.sql)의 내용을 모두 붙여 넣고 실행합니다.
-4. **Table Editor**에서 `public.guestbook_entries`와 `public.guestbook_page_views` 테이블이 생겼는지 확인합니다. 기존에 방명록 SQL을 실행했다면, 새로 추가된 방문 기록 테이블을 만들기 위해 **전체 SQL을 다시 실행**해도 됩니다.
+4. **Table Editor**에서 `public.guestbook_entries` 테이블이 생겼는지 확인합니다.
 
-방명록 글은 `guestbook_entries`에 저장되어 페이지에 공개됩니다. 페이지를 연 기록은 `guestbook_page_views`에 저장되고 공개 페이지에서는 조회할 수 없습니다. 방문 기록에는 브라우저가 생성한 임의 ID, 방문 시각, 페이지 경로만 들어갑니다. 브라우저 저장소를 지우면 새 ID가 생기므로 이 ID는 정확한 사람 수를 뜻하지 않습니다.
+이전에 만들었던 `guestbook_page_views` 테이블은 방명록 글과 별개인 페이지 방문 기록용입니다. 더 이상 사용하지 않으며, 기존 방문 기록까지 삭제하기로 결정한 경우에만 [`supabase/remove_page_views.sql`](supabase/remove_page_views.sql)을 실행합니다.
 
 ## 2. 브라우저 연결 값 입력
 
@@ -41,7 +41,7 @@ GitHub Pages는 `main` 브랜치의 최상위 폴더에서 배포하도록 설�
 1. 배포된 `guestbook.html` 주소가 열리는지 확인합니다.
 2. 이름과 글을 작성해 바로 포스트잇이 붙는지 확인합니다.
 3. 다른 브라우저 또는 시크릿 창에서 같은 페이지를 열어 새 글이 실시간으로 추가되는지 확인합니다.
-4. Supabase **Table Editor → guestbook_page_views**에서 페이지를 열 때마다 방문 행이 추가되는지 확인합니다.
+4. Supabase **Table Editor → guestbook_entries**에서 `name`, `message`, `created_at`이 저장되는지 확인합니다.
 5. 문제가 있으면 브라우저 개발자 도구의 Console을 확인하고, `supabase-config.js` 값과 SQL 실행 결과를 먼저 확인합니다.
 
 공개 방명록은 로그인 없이 누구나 글을 올릴 수 있습니다. 악성 글이나 스팸을 막는 운영 기능이 필요하면 별도의 정책과 관리 흐름을 추가해야 합니다.

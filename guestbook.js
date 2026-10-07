@@ -26,24 +26,6 @@ if (!configured) {
 } else {
   const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
-  // 같은 브라우저의 방문을 느슨하게 묶는 임의 ID입니다. 이름/IP는 기록하지 않습니다.
-  let visitorId = crypto.randomUUID();
-  try {
-    const storedId = localStorage.getItem('guestbook-visitor-id');
-    if (storedId && /^[0-9a-f-]{36}$/i.test(storedId)) {
-      visitorId = storedId;
-    } else {
-      localStorage.setItem('guestbook-visitor-id', visitorId);
-    }
-  } catch {
-    // 저장소 접근이 막혀도 이번 방문 기록은 남깁니다.
-  }
-  supabase.from('guestbook_page_views')
-    .insert({ visitor_id: visitorId, path: location.pathname.slice(0, 200) })
-    .then(({ error }) => {
-      if (error) console.warn('방문 기록 저장에 실패했습니다:', error.message);
-    });
-
   function render() {
     const sorted = [...entries.values()]
       .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
