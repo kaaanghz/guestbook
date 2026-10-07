@@ -1,0 +1,32 @@
+:root { color-scheme: light; font-family: Arial, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f5f2e9; color: #26231f; }
+.guestbook-page { width: min(1100px, calc(100% - 40px)); margin: 0 auto; padding: 32px 0 80px; }
+.guestbook-header { text-align: center; margin: 12px 0 38px; }
+h1 { margin: 0; font-size: clamp(2rem, 6vw, 3.5rem); }
+.guestbook-header p { margin: 10px 0 0; color: #5e574d; }
+.write-panel { max-width: 600px; margin: 0 auto 60px; padding: 28px; background: #fffdf8; border: 1px solid #e4dbca; box-shadow: 8px 8px 0 #e9e1d2; }
+h2 { margin: 0 0 22px; font-size: 1.35rem; }
+label { display: block; margin: 16px 0 7px; font-weight: 700; }
+input, textarea { display: block; width: 100%; padding: 12px 14px; border: 1px solid #bcb4a5; border-radius: 4px; background: white; color: inherit; font: inherit; }
+textarea { resize: vertical; min-height: 130px; }
+input:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid #3b6f9f; outline-offset: 2px; }
+.form-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 16px; }
+#character-count { color: #655f57; font-size: .9rem; }
+button { border: 0; border-radius: 4px; padding: 12px 24px; background: #26231f; color: white; font: inherit; font-weight: 700; cursor: pointer; }
+button:hover:not(:disabled) { background: #51493e; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+.status { min-height: 1.3em; margin: 12px 0 0; color: #5e574d; }
+.notes-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.notes-heading h2 { margin-bottom: 8px; }
+.notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 28px; padding: 26px 4px; }
+.note { display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; padding: 24px 22px 20px; background: #fff5a8; box-shadow: 4px 7px 12px #0002; transform: rotate(-1.5deg); overflow-wrap: anywhere; }
+.note::before { content: ''; display: block; width: 46px; height: 14px; margin: -32px auto 12px; background: #ffffffa8; border: 1px solid #ffffff72; transform: rotate(3deg); }
+.note-1 { background: #ffd8dd; transform: rotate(1.4deg); }
+.note-2 { background: #d8f2dc; transform: rotate(-.8deg); }
+.note-3 { background: #dceaff; transform: rotate(1deg); }
+.note-4 { background: #ffe3bd; transform: rotate(-1.1deg); }
+.note-message { white-space: pre-wrap; line-height: 1.5; margin: 0 0 20px; }
+.note footer { display: flex; justify-content: space-between; gap: 12px; align-items: end; font-size: .85rem; }
+.note time { color: #514b43; text-align: right; }
+@media (max-width: 640px) { .guestbook-page { width: min(100% - 28px, 1100px); padding-top: 20px; } .write-panel { padding: 20px; } .notes-grid { gap: 22px; } }

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>방명록</title>
+  <link rel="stylesheet" href="guestbook.css">
+</head>
+<body>
+  <main class="guestbook-page">
+    <header class="guestbook-header">
+      <h1>방명록</h1>
+      <p>여기에 작은 인사를 남겨주세요.</p>
+    </header>
+
+    <section class="write-panel" aria-labelledby="write-title">
+      <h2 id="write-title">새 포스트잇 붙이기</h2>
+      <form id="guestbook-form">
+        <label for="guest-name">이름</label>
+        <input id="guest-name" name="name" type="text" maxlength="40" required autocomplete="name" placeholder="이름을 적어주세요">
+        <label for="guest-message">하고 싶은 말</label>
+        <textarea id="guest-message" name="message" maxlength="500" required rows="5" placeholder="하고 싶은 말을 적어주세요"></textarea>
+        <div class="form-bottom">
+          <span id="character-count">0 / 500</span>
+          <button id="submit-button" type="submit">작성하기</button>
+        </div>
+        <p id="form-status" class="status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="notes-section" aria-labelledby="notes-title">
+      <div class="notes-heading">
+        <h2 id="notes-title">남겨진 이야기</h2>
+        <span id="entry-count" aria-live="polite"></span>
+      </div>
+      <p id="list-status" class="status" role="status" aria-live="polite">방명록을 불러오는 중이에요…</p>
+      <div id="guestbook-list" class="notes-grid" aria-live="polite"></div>
+    </section>
+  </main>
+  <script type="module" src="guestbook.js"></script>
+</body>
+</html>
