@@ -20,11 +20,21 @@
 3. [`supabase-config.js`](supabase-config.js)의 두 값을 교체합니다.
 4. **secret** 또는 **service_role** 키는 브라우저 코드에 넣지 않습니다.
 
-## 3. 방명록 페이지 열기 및 배포
+## 3. 사이트 주소와 GitHub 업로드
 
 1. 로컬에서는 [http://127.0.0.1:8765/guestbook.html](http://127.0.0.1:8765/guestbook.html)을 엽니다. 이 주소는 로컬 서버가 실행 중인 현재 컴퓨터에서만 열립니다.
-2. GitHub Pages로 공개하려면 `index.html`, `guestbook.html`, `guestbook.css`, `guestbook.js`, `supabase-config.js`를 GitHub Pages가 배포하는 폴더에 넣습니다. 메인 페이지에 링크를 추가할 필요는 없습니다.
-3. 배포 후 저장소의 **Settings → Pages**에 표시되는 기본 주소를 열면 방명록으로 이동합니다.
+2. GitHub 저장소: [kaaanghz/guestbook](https://github.com/kaaanghz/guestbook)
+3. 공개 사이트: [https://kaaanghz.github.io/guestbook/](https://kaaanghz.github.io/guestbook/) — `index.html`이 방명록 페이지로 바로 이동시킵니다.
+
+이 폴더는 GitHub 저장소의 `main` 브랜치에 연결되어 있습니다. 이후 파일을 수정하고 업로드할 때 터미널에서 이 폴더로 이동해 아래 명령을 실행하세요.
+
+```bash
+git add .
+git commit -m "Update guestbook"
+git push
+```
+
+GitHub Pages는 `main` 브랜치의 최상위 폴더에서 배포하도록 설정되어 있습니다. 새 파일을 올린 뒤 반영까지 잠시 걸릴 수 있습니다.
 
 ## 4. 확인
 
